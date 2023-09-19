@@ -2,6 +2,7 @@ package com.rcintra.rinhabackendasync.pessoa;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class PessoaService {
         return p2;
     }
 
+    @Cacheable(value = "pessoas", key = "#id")
     public Pessoa findById(UUID id) {
         return repository.findById(id).orElseThrow();
     }
@@ -35,5 +37,10 @@ public class PessoaService {
 
     public List<Pessoa> findAllByTerm(String t) {
         return repository.findBySearchContainingIgnoreCase(t);
+    }
+
+    @Cacheable(value = "pessoas", key = "#apelido")
+    public Boolean existsByApelido(String apelido) {
+        return repository.existsByNicknameIgnoreCase(apelido);
     }
 }

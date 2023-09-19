@@ -2,7 +2,7 @@ FROM openjdk:17-jdk-slim-buster as BUILD
 
 WORKDIR /app
 
-COPY ./target/rinha-backend-1.0.0.jar ./rinha.jar
+COPY ./target/rinha-backend-async-1.0.0.jar ./rinha.jar
 
 #COPY src /app/src
 #COPY pom.xml /app

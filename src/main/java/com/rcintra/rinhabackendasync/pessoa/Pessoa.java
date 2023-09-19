@@ -1,9 +1,9 @@
 package com.rcintra.rinhabackendasync.pessoa;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.springframework.integration.util.UUIDConverter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,11 +20,16 @@ public class Pessoa implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @NotNull
+    @Size(message = "Apelido deve ter entre 1 e 32 caracteres", min = 1, max = 32)
     private String nickname;
+    @NotNull @Size(message = "Nome deve ter entre 1 e 100 caracteres", min = 1, max = 100)
     private String name;
+
+    @NotNull(message = "A data de nascimento tem que estar no formado AAAA-MM-DD")
     private LocalDate birthDate;
     @Convert(converter = StringListConverter.class)
-    private List<String> stack;
+    private List<@Size(min = 1, max=32) String> stack;
 
     @JsonIgnore
     @Column(insertable = false, updatable = false)

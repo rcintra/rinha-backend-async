@@ -1,7 +1,7 @@
 POST http://localhost:8080/pessoas
 Content-Type: application/json
 
-{"nickname": "rafael2", "name": "dasd", "birthDate": "1980-09-20", "stack": ["Java", "Ruby"]}
+{"nickname": "cintra2", "name": "dasd", "birthDate": "1980-09-20", "stack": ["Java", "Ruby"]}
 
 ###
 GET http://localhost:8080/pessoas/955a85fb-8e76-49f6-9c38-30ddd3f52ece
@@ -14,6 +14,6 @@ Accept: application/json
 ```
 
 ###
-GET http://localhost:8080/pessoas?t=rafa
+GET http://localhost:8080/pessoas?t=intr
 Accept: application/json
 ```

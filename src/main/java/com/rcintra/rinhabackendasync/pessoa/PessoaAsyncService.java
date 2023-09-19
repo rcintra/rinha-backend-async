@@ -34,4 +34,8 @@ public class PessoaAsyncService {
         return CompletableFuture.supplyAsync(() -> pessoaService.save(pessoa));
     }
 
+    public CompletableFuture<Boolean> existsByApelido(String apelido) {
+        return CompletableFuture.supplyAsync(() -> pessoaService.existsByApelido(apelido));
+    }
+
 }
