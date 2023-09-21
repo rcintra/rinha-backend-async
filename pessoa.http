@@ -4,7 +4,7 @@ Content-Type: application/json
 {"nickname": "cintra2", "name": "dasd", "birthDate": "1980-09-20", "stack": ["Java", "Ruby"]}
 
 ###
-GET http://localhost:8080/pessoas/955a85fb-8e76-49f6-9c38-30ddd3f52ece
+GET http://localhost:8080/pessoas/0f48fb5b-3210-4a4c-8c54-58ff94ece833
 Accept: application/json
 ```
 

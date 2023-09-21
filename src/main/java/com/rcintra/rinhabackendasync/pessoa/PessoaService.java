@@ -28,7 +28,7 @@ public class PessoaService {
 
     @Cacheable(value = "pessoas", key = "#id")
     public Pessoa findById(UUID id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new PessoaNotFoundException("Pessoa com id ["+id+"] não encontrada"));
     }
 
     public Long count() {

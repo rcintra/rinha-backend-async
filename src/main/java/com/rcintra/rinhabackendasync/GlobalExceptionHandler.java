@@ -1,6 +1,7 @@
 package com.rcintra.rinhabackendasync;
 
 import com.rcintra.rinhabackendasync.pessoa.ApelidoUnicoException;
+import com.rcintra.rinhabackendasync.pessoa.PessoaNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -36,6 +37,16 @@ public class GlobalExceptionHandler {
                         e,
                         HttpStatus.UNPROCESSABLE_ENTITY,
                         e.getMessage()
+        ).build();
+        return ResponseEntity.unprocessableEntity().body(errorResponse);
+    }
+
+    @ExceptionHandler(PessoaNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePessoaNotFoundException(PessoaNotFoundException e) {
+        ErrorResponse errorResponse = ErrorResponse.builder(
+                e,
+                HttpStatus.NOT_FOUND,
+                e.getMessage()
         ).build();
         return ResponseEntity.unprocessableEntity().body(errorResponse);
     }
