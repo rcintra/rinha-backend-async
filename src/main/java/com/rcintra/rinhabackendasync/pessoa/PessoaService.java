@@ -1,17 +1,15 @@
 package com.rcintra.rinhabackendasync.pessoa;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional(readOnly = true)
 public class PessoaService {
-
-    private static final Logger log = LoggerFactory.getLogger(PessoaService.class);
 
     private final PessoaRepository repository;
 
@@ -19,11 +17,9 @@ public class PessoaService {
         this.repository = repository;
     }
 
+    @Transactional
     public Pessoa save(Pessoa pessoa) {
-        log.info("Adding new person: {}", pessoa);
-        Pessoa p2 = repository.save(pessoa);
-        log.info("Person added: {}", p2);
-        return p2;
+        return repository.save(pessoa);
     }
 
     @Cacheable(value = "pessoas", key = "#id")
